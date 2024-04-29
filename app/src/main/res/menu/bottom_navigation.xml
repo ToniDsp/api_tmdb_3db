@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btnInicio"
+        android:icon="@drawable/casa"
+        android:title="Inicio"
+        />
+    <item
+        android:id="@+id/btnBuscar"
+        android:icon="@drawable/buscar_ic"
+        android:title="Buscar"
+        />
+    <item
+        android:id="@+id/btnFavoritos"
+        android:icon="@drawable/favorito"
+        android:title="Favoritos"
+        />
+</menu>

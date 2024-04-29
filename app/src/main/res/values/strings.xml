@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FilMovil</string>
+    <string name="descripcion_recyclerview">Lista de películas buscadas</string>
+</resources>

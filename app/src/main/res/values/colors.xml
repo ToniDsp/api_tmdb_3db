@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Colores del main activity !-->
+    <color name ="titulo_azul">#00b5f8</color>
+    <color name="iconos_gris">#e2e1e0</color>
+    <color name="barra_negra">#AE000000</color>
+    <color name ="barra_busqueda">#ececec</color>
+    <color name ="azul_cardView">#8000b5f8</color>
+</resources>
