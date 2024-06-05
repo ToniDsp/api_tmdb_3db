@@ -16,7 +16,10 @@ import com.example.toolbar_edicion2.api.Constantes
 import com.example.toolbar_edicion2.infoPeliculas.InfoPeliculas
 import com.example.toolbar_edicion2.sqlite.DatabaseHelper
 
-class FavoritosAdapter(private val peliculas: MutableList<InfoPeliculas>) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+class FavoritosAdapter(
+    private val peliculas: MutableList<InfoPeliculas>,
+    private val generosPorPelicula: Map<String, String>
+) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
 
     inner class FavoritosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterImageView: ImageView = itemView.findViewById(R.id.posterImageView)
@@ -24,6 +27,7 @@ class FavoritosAdapter(private val peliculas: MutableList<InfoPeliculas>) : Recy
         val fechaLanzamientoTextView: TextView = itemView.findViewById(R.id.fechaLanzamientoTextView)
         val votoPromedioTextView: TextView = itemView.findViewById(R.id.votoPromedioTextView)
         val cardView: CardView = itemView.findViewById(R.id.cvEstadoVisto)
+        val tvGeneros: TextView = itemView.findViewById(R.id.tvGeneros)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritosViewHolder {
@@ -33,6 +37,8 @@ class FavoritosAdapter(private val peliculas: MutableList<InfoPeliculas>) : Recy
 
     override fun onBindViewHolder(holder: FavoritosViewHolder, position: Int) {
         val pelicula = peliculas[position]
+        val generos = generosPorPelicula[pelicula.id]
+        holder.tvGeneros.text = generos
         Glide.with(holder.posterImageView.context)
             .load("${Constantes.BASE_URL_IMAGEN}${pelicula.poster}")
             .into(holder.posterImageView)

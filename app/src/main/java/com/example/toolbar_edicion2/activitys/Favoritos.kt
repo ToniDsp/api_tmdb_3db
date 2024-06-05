@@ -20,6 +20,7 @@ class Favoritos: AppCompatActivity() {
         binding = ActivityFavoritosBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigation.selectedItemId = R.id.btnFavoritos
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.btnBuscar -> {
@@ -43,9 +44,9 @@ class Favoritos: AppCompatActivity() {
         }
 
         databaseHelper = DatabaseHelper(this)
-        val peliculasList: List<InfoPeliculas> = databaseHelper.SelectSinEstado()
-        val peliculaMutableList = peliculasList.toMutableList()
-        val adapter = FavoritosAdapter(peliculaMutableList)
+        val peliculasList: MutableList<InfoPeliculas> = databaseHelper.SelectSinEstado().toMutableList()
+        val generosPorPelicula = databaseHelper.obtenerNombresGenerosTodasPeliculas()
+        val adapter = FavoritosAdapter(peliculasList, generosPorPelicula)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
 

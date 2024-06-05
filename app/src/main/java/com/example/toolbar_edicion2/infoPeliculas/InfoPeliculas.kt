@@ -1,6 +1,5 @@
 package com.example.toolbar_edicion2.infoPeliculas
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -21,7 +20,10 @@ data class InfoPeliculas(
     @SerializedName("vote_average")
     var votoPromedio:String,
     @SerializedName("media_type")
-    var tipoPelicula:String
+    var tipoPelicula:String,
+    @SerializedName("genre_ids")
+    var generos: List <Int>,
+
 )  : Serializable {
     val title: String
         get() = nombrePelicula ?: titulo ?: ""

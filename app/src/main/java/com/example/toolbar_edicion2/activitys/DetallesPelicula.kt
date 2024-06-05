@@ -1,12 +1,16 @@
 package com.example.toolbar_edicion2.activitys
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.PopupMenu
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -19,6 +23,7 @@ import com.example.toolbar_edicion2.sqlite.DatabaseHelper
 class DetallesPelicula : AppCompatActivity(){
     private lateinit var binding: ActivityDetallesBinding
     private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetallesBinding.inflate(layoutInflater)
@@ -98,11 +103,33 @@ class DetallesPelicula : AppCompatActivity(){
                                     it.poster,
                                     it.fechaLanzamiento,
                                     it.votoPromedio.toDoubleOrNull() ?: 0.0,
-                                    it.tipoPelicula
+                                    it.tipoPelicula,
+                                    it.generos
                                     )
                         }
                         true
                     }
+                    R.id.compartir -> {
+                        pelicula?.let {
+                            val movieId = it.id.toString()
+                            val typemovie = it.tipoPelicula
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, "Te recomiendo esta película de filmovil: https://filmovil.com/?id=$movieId&type=$typemovie")
+                                type = "text/plain"
+                                setPackage("com.whatsapp")
+                            }
+
+                            try {
+                                startActivity(sendIntent)
+                            } catch (ex: ActivityNotFoundException) {
+                                Toast.makeText(this, "WhatsApp no está instalado.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        true
+
+                    }
+
                     else -> false
                 }
             }

@@ -64,6 +64,14 @@
                     android:textAlignment="center"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvGeneros"
+                    android:layout_width="355dp"
+                    android:layout_height="34dp"
+                    android:layout_below="@id/fechaLanzamientoTextView"
+                    android:layout_marginTop="2dp"
+                    android:text="Generos"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/votoPromedioTextView"
